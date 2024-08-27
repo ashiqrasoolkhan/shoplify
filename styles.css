@@ -1,0 +1,143 @@
+/* Animated gradient background with dark and white themes */
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(45deg, #333, #666, #ccc, #525252);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Glass effect for the form */
+.container {
+    margin-top: 5%;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Blurs the background behind the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    max-width: 1200px; /* Max width for larger screens */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive layout for form controls */
+.form-floating {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly opaque background for inputs */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
+    color: #000; /* Black text for better readability */
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque background on focus */
+    border-color: rgba(255, 255, 255, 0.5); /* Slightly brighter border */
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25); /* Focus shadow */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.table {
+    background: rgba(255, 255, 255, 0.2); /* Slightly opaque background for the table */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    color: #000; /* Black text for better readability */
+}
+
+.table thead th {
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly darker header background */
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .container {
+        padding: 15px; /* Reduce padding on small screens */
+    }
+    
+    .table {
+        font-size: 14px; /* Reduce font size for smaller screens */
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .container {
+        padding: 20px; /* Standard padding for medium screens */
+    }
+    
+    .table {
+        font-size: 16px; /* Slightly larger font size for medium screens */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .container {
+        padding: 25px; /* Increase padding for larger screens */
+    }
+    
+    .table {
+        font-size: 18px; /* Larger font size for larger screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        padding: 30px; /* Standard padding for large screens */
+    }
+    
+    .table {
+        font-size: 20px; /* Largest font size for the largest screens */
+    }
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #invoiceform, #invoiceform * {
+        visibility: visible;
+    }
+    #invoiceform {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
