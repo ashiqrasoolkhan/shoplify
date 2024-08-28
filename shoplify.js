@@ -158,7 +158,7 @@ function printInvoice() {
             </table>
             <div class="copyright">
                 <p>Thank you for your business!</p>
-                <p>&copy; ${new Date().getFullYear()} Your Company</p>
+                <p>&copy; ${new Date().getFullYear()} WinTekin By Ashiq Rasool</p>
             </div>
         </body>
     </html>
