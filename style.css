@@ -1,0 +1,218 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    
+}
+body {
+   
+    margin: 0;
+    background-size: 800% 800%; 
+    background-color:#222831 ;
+    height: 100%; 
+  }
+ 
+  
+  header .nav-bar {
+    padding-bottom: 0px;
+    position: sticky;
+    top: 0; /* Makes the nav-bar sticky at the top */
+    padding-left: 50px;
+    padding-top: 10px;
+    width: 100%; /* Ensures the navbar spans the full width */
+    overflow: hidden; /* Prevents overflow issues with floated elements */
+    
+  }
+  
+  header .head-text {
+    float: left;
+    padding: 12px ;
+    font-weight: bold;
+    font-size: 32px;
+    color: #76ABAE;
+  }
+  
+  header .nav-bar a {
+    float: right;
+    padding: 25px 23px;
+    text-decoration: none;
+    color: #ECDFCC;
+    font-weight: lighter;
+
+  }
+  header .nav-bar  a:hover{
+        background-color: #ECDFCC;
+        color: #1E201E;
+        transition: ease-in-out 0.3s;
+        padding-bottom: 10px;
+        backface-visibility: 50%;
+        
+  }
+  .main-area{
+    padding-left: 50px;
+    text-shadow: 5px 5px 500px white;
+    padding-bottom: 0px;
+    
+  }
+  .main-area .welcome-text h2{
+    color: #ECDFCC;
+    font-size: 64px;
+    padding-top: 200px;
+    
+  }
+  .main-area .welcome-text h2 a{
+    color: #76ABAE;
+  }  
+  .main-area .welcome-text h2 a:hover{
+    color: #30585a;
+    transition: ease-in-out 0.3s 0.3s;
+  }  
+  .main-area .welcome-text p {
+    text-wrap: wrap;
+    padding-top: 30px;
+    font-size: 28px;
+    color: #ECDFCC;
+    font-weight: lighter;
+    padding-bottom: 10px;
+  }
+  .btn-latest{
+    padding: 10px 25px;
+    border: 1px solid#ECDFCC;
+    color: #ECDFCC;
+    text-shadow: 2px 2px 2px 50px white;
+  }
+  .btn-latest:hover{
+    background-color: #30585a;
+    background-blend-mode: color-burn;
+    color: #ECDFCC;
+    transition: ease 0.4s;
+    display: flex;
+  }
+  footer{
+    margin-top: 10px;
+    text-align: center;
+    
+  }
+  footer a{
+    padding: 25px 23px;
+    text-decoration: none;
+    color: #ECDFCC;
+    border-bottom: #ECDFCC;
+    font-weight: lighter;
+  }
+  footer a:hover{
+    border-bottom: solid 1px #ECDFCC;
+    transition: ease 0.3s;
+  }
+.dropdown{
+    display: none;
+}
+.head-text-mobile{
+    display:none ;
+}
+  /* responsivenes */
+@media (max-width:430px ) {
+    header{
+        display: none;
+    }
+    .main-area{
+        padding-left: 13px;
+    }
+    .main-area .welcome-text h2 {
+        font-size: 36px;
+    }
+    .main-area .welcome-text p{
+        font-size: 16px;
+    }
+    .head-text-mobile{
+        display: flex;
+        float: left;
+        padding-right: 180px;
+        font-weight: bold;
+         font-size: 28px;
+         color: #76ABAE;
+         padding-top: 8px;
+         
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        float: right;
+        padding-top: 10px;
+        padding-right: 10px;
+        font-weight: 400;
+             
+      }
+      
+      .dropdown-btn {
+        border: solid 1px white;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 50px;
+        padding-top: 20px;
+        font-weight: bold;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 10px;
+      }
+      
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        transition: ease-in-out 0.5s;
+      }
+      
+      /* Show the dropdown content on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .card1{
+            text-shadow: 5px 5px 50px white;
+            border-radius: 30px;
+            box-shadow: 3px 3px 100px  rgba(255, 255, 255, 0.205);
+      }
+      .checkout-btn{
+            padding: 10px ;
+            color: #ECDFCC;
+            text-shadow: 2px 2px 2px 50px white;
+      }
+      .card1 img{
+        
+        border-radius: 20px;
+       
+      }
+      footer{
+        margin-top: 100px;
+        text-align: center;
+        float: left;
+        padding-left:14px;
+      }
+      footer  a {
+        font-size: 12px;
+       padding: 5px;
+       border-bottom: #ECDFCC;
+ 
+      }
+      footer .copyright   {
+        color: #ECDFCC;
+       
+        font-style: italic;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
+}
+
