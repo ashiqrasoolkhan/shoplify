@@ -2,7 +2,6 @@ let itemCounter = 0;
 
 function addInvoiceItem() {
     itemCounter++;
-
     const newItemRow = `
     <tr id="itemRow${itemCounter}">
         <td><input type="text" class="form-control" placeholder="Enter Your Item Or Service" required></td>
@@ -12,7 +11,6 @@ function addInvoiceItem() {
         <td><button type="button" class="btn btn-danger" onClick="removeInvoiceItem(${itemCounter})">Remove</button></td>
     </tr>
     `;
-
     $("#invoiceItems").append(newItemRow);
     updateTotalAmount();
 }
@@ -31,25 +29,33 @@ function updateTotalAmount() {
         $(this).find(".totalItemPrice").val(totalItemPrice.toFixed(2));
         totalAmount += totalItemPrice;
     });
-    console.log("Total Amount: ", totalAmount); // Debugging line
     $("#totalAmount").val(totalAmount.toFixed(2));
+}
+
+function calculateAmountPayable() {
+    let totalAmount = parseFloat(document.getElementById('totalAmount').value) || 0;
+    let discount = parseFloat(document.getElementById('discount').value) || 0;
+    let amountPayable = totalAmount - discount;
+    document.getElementById('amountPayable').value = amountPayable.toFixed(2);
 }
 
 $(document).ready(function () {
     // Set the current date
-    const currentDate = new Date();
-    const formattedDate = currentDate.toISOString().slice(0, 10);
-    $("#date").val(formattedDate);
+    const currentDate = new Date().toISOString().slice(0, 10);
+    $("#date").val(currentDate);
+
+    // Event listeners for live updates
+    $('#totalAmount').on('input', calculateAmountPayable);
+    $('#discount').on('input', calculateAmountPayable);
 
     // Handle form submission
     $("#invoiceform").submit(function (event) {
         event.preventDefault(); // Prevent the default form submission
-        console.log("Form submitted"); // Debugging line
         updateTotalAmount(); // Update the total amount on form submission
     });
-})
+});
 
-function printInvoice(){
+function printInvoice() {
     const invoiceNumber = $("#invoiceNumber").val();
     const date = $("#date").val();
     const companyName = $("#companyName").val();
@@ -58,7 +64,6 @@ function printInvoice(){
     const phoneNumber = $("#phoneNumber").val();
     const items = [];
 
-    // Extract table row data
     $("tr[id^='itemRow']").each(function() {
         const description = $(this).find("td:eq(0) input").val() || '';
         const quantity = $(this).find("td:eq(1) input").val() || '';
@@ -72,30 +77,19 @@ function printInvoice(){
             totalItemPrice: totalItemPrice
         });
     });
-    
-const totalAmount = $("#totalAmount").val();
 
-const invoiceContent = `
-<html>
+    const totalAmount = $("#totalAmount").val();
+    const warranty = $("#Warranty").val(); // Fixed: Get the value of Warranty input
+
+    const invoiceContent = `
+    <html>
         <head>
             <title>Invoice Slip</title>
-             
             <style>
-
                 body {
                     font-family: Arial, sans-serif;
                     margin: 20px;
                 }
-                     .invoice-header {
-            display: flex;
-            align-items: center;
-        }
-        .invoice-header h1 {
-            margin-right: 20px;
-        }
-        .barcode {
-            margin-left: 20px;
-        }
                 h1 {
                     color: #007bff;
                 }
@@ -112,72 +106,66 @@ const invoiceContent = `
                 .total {
                     font-weight: bold;
                 }
-                    .copyright{
-                    margin-bottom:50px;}
+                .copyright {
+                    margin-bottom: 50px;
+                }
             </style>
         </head>
         <body>
-       
-        <h2>Invoice Slip</h2>
-        
-    </div>
-    <hr>
+            <h1>Invoice</h1>
             <p><strong>Invoice Number:</strong> ${invoiceNumber}</p>
-            <p><strong>Invoice Date:</strong> ${date}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Company Name:</strong> ${companyName}</p>
             <p><strong>Customer Name:</strong> ${customerName}</p>
-            <p><strong>From:</strong> ${companyName}</p>
             <p><strong>Customer Address:</strong> ${customerAddress}</p>
             <p><strong>Phone Number:</strong> ${phoneNumber}</p>
-            <hr>
             <table>
                 <thead>
                     <tr>
                         <th>Description</th>
                         <th>Quantity</th>
-                        <th>Unit Price</th>
+                        <th>Price</th>
                         <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    ${items.map((item) => `
+                    ${items.map(item => `
                         <tr>
                             <td>${item.description}</td>
                             <td>${item.quantity}</td>
                             <td>${item.price}</td>
                             <td>${item.totalItemPrice}</td>
                         </tr>
-                    `).join("")}
+                    `).join('')}
                 </tbody>
+                <tfoot>
+                    <tr class="total">
+                        <td colspan="3">Total Amount</td>
+                        <td>${totalAmount}</td>
+                    </tr>
+                    <tr class="discount">
+                        <td colspan="3">Discount</td>
+                        <td>${$("#discount").val()}</td>
+                    </tr>
+                    <tr class="total">
+                        <td colspan="3">Amount Payable</td>
+                        <td>${$("#amountPayable").val()}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Warranty: ${warranty}</td>
+                    </tr>
+                </tfoot>
             </table>
-            <hr>
-            <p class="total">Total Amount: ${totalAmount}</p>
-            <p class="">Warranty: ${Warranty}</p>
-            <p  class="copyright" class="total">This Invoice is generated by Shoplify 2024-25 </p>
-            
-        </body>`;
+            <div class="copyright">
+                <p>Thank you for your business!</p>
+                <p>&copy; ${new Date().getFullYear()} Your Company</p>
+            </div>
+        </body>
+    </html>
+    `;
 
-const printWindow = window.open("","_blank");
+    const printWindow = window.open("","_blank");
 printWindow.document.write(invoiceContent);
 printWindow.document.close();
 printWindow.print();
-    
 }
-
-document.getElementById('generateButton').addEventListener('click', function() {
-    // Get the input values
-    const totalAmount = parseFloat(document.getElementById('totalAmount').value);
-    const discountAmount = parseFloat(document.getElementById('discountAmount').value);
-
-    // Check if inputs are valid numbers
-    if (isNaN(totalAmount) || isNaN(discountAmount)) {
-        alert("Please enter valid numbers for both fields.");
-        return;
-    }
-
-    // Calculate the amount payable
-    const amountPayable = totalAmount - discountAmount;
-
-    // Display the result
-    document.getElementById('result').textContent = `Amount Payable: $${amountPayable.toFixed(2)}`;
-});
-
