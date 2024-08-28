@@ -288,11 +288,25 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="text" class="form-control discountAmount" id="Warranty" placeholder=""  >
-                        <label for="discountAmount">Warranty:</label>
+                        <input type="text" class="form-control Warranty" id="Warranty" placeholder=""  >
+                        <label for="Warranty">Warranty:</label>
                     </div>
                 </div>
-                
+                <!-- Discount -->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="discount" placeholder="Discount">
+                    <label for="discount">Discount:</label>
+                </div>
+            </div>
+
+            <!-- Amount Payable -->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="amountPayable" placeholder="Amount Payable" readonly>
+                    <label for="amountPayable">Amount Payable:</label>
+                </div>
+            </div>
                 <div class="col-12 d-flex justify-content-between">
                     <button type="submit" id="generateButton" class="btn btn-success">Generate Invoice</button>
                     <button  class="btn btn-danger" onClick="printInvoice()">Print Invoice</button>
